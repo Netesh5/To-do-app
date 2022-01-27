@@ -19,10 +19,10 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primary_light_color,
-      body: SafeArea(
-        child: Padding(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: primary_light_color,
+        body: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: Column(
             children: [

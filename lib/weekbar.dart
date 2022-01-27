@@ -33,12 +33,12 @@ class _weekbarState extends State<weekbar> {
           int day = DateTime.now().day + index;
           return GestureDetector(
             child: Container(
-              margin:
-                  const EdgeInsets.only(top: 20, left: 5, right: 5, bottom: 5),
+              margin: const EdgeInsets.only(
+                  top: 20, left: 10, right: 10, bottom: 5),
               height: 70,
               width: 50,
               decoration: BoxDecoration(
-                color: inactiveCardColor,
+                color: inactiveTextColor,
                 border: Border.all(
                   color:
                       selected_day == day ? activeCardColor : inactiveCardColor,
@@ -49,6 +49,17 @@ class _weekbarState extends State<weekbar> {
                 children: [
                   Text(
                     DateFormat('EE')
+                        .format(DateTime.now().add(Duration(days: index))),
+                    style: TextStyle(
+                        color: day == DateTime.now().day
+                            ? activeTextColor
+                            : Colors.grey[700],
+                        fontWeight: day == DateTime.now().day
+                            ? FontWeight.bold
+                            : FontWeight.normal),
+                  ),
+                  Text(
+                    DateFormat('d')
                         .format(DateTime.now().add(Duration(days: index))),
                     style: TextStyle(
                         color: day == DateTime.now().day

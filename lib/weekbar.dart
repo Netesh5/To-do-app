@@ -14,8 +14,8 @@ class _weekbarState extends State<weekbar> {
   Color activeCardColor = Colors.white;
   Color inactiveCardColor = Colors.black26;
 
-  Color activeTextColor = Colors.black;
-  Color inactiveTextColor = Colors.white;
+  Color activeTextColor = Colors.white;
+  Color inactiveTextColor = const Color(0xff1f1f1f);
 
   String date = DateFormat("dd, MMMM").format(DateTime.now());
   var future_days = DateTime.now().add(const Duration(days: 6));
@@ -38,19 +38,21 @@ class _weekbarState extends State<weekbar> {
               height: 70,
               width: 50,
               decoration: BoxDecoration(
-                color: inactiveTextColor,
+                color: selected_day == day ? Colors.black : inactiveTextColor,
                 border: Border.all(
-                  color:
-                      selected_day == day ? activeCardColor : inactiveCardColor,
-                ),
+                    // color:
+                    //     selected_day == day ? activeCardColor : inactiveCardColor,
+                    ),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     DateFormat('EE')
                         .format(DateTime.now().add(Duration(days: index))),
                     style: TextStyle(
+                        fontSize: 18,
                         color: day == DateTime.now().day
                             ? activeTextColor
                             : Colors.grey[700],
@@ -62,6 +64,7 @@ class _weekbarState extends State<weekbar> {
                     DateFormat('d')
                         .format(DateTime.now().add(Duration(days: index))),
                     style: TextStyle(
+                        fontSize: 18,
                         color: day == DateTime.now().day
                             ? activeTextColor
                             : Colors.grey[700],

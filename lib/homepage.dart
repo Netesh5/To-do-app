@@ -12,7 +12,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   Color primary_light_color = const Color(0xffFCFDF3);
   Color primary_dark_color = const Color(0xff1f1f1f);
-  Color faded_black = Colors.black26;
+  Color faded_black = Colors.grey.shade700;
   String date = DateFormat("dd, MMMM").format(DateTime.now());
 
   //String circle_avatar_image ="https://indiashorts.com/wp-content/uploads/2021/04/9_20210416_113356_0008.png";
@@ -30,7 +30,10 @@ class _HomepageState extends State<Homepage> {
                 leading: Column(children: [
                   const Text(
                     "Today",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.grey),
                   ),
                   const SizedBox(
                     height: 5,

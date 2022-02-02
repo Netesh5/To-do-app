@@ -34,7 +34,7 @@ class _weekbarState extends State<weekbar> {
           return GestureDetector(
             child: Container(
               margin: const EdgeInsets.only(
-                  top: 20, left: 10, right: 10, bottom: 5),
+                  top: 20, left: 20, right: 10, bottom: 5),
               height: 70,
               width: 50,
               decoration: BoxDecoration(

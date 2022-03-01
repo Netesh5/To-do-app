@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todo/fab.dart';
 import 'package:todo/weekbar.dart';
 
 class Homepage extends StatefulWidget {
@@ -52,6 +53,8 @@ class _HomepageState extends State<Homepage> {
             ],
           ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: const fab(),
       ),
     );
   }

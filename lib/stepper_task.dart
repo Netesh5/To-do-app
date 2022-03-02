@@ -15,13 +15,23 @@ class _stepperState extends State<stepper> {
     //   physics: ScrollPhysics(),
     //   steps: [],
     // );
-    return Column(
-      children: [
-        Card(
-            shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        )),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: SizedBox(
+        height: 100,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          color: Colors.amberAccent,
+          child: Row(
+            children: const [
+              Text(""),
+              Text(""),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -10,10 +10,18 @@ class stepper extends StatefulWidget {
 class _stepperState extends State<stepper> {
   @override
   Widget build(BuildContext context) {
-    return Stepper(
-      type: StepperType.vertical,
-      physics: ScrollPhysics(),
-      steps: [],
+    // return Stepper(
+    //   type: StepperType.vertical,
+    //   physics: ScrollPhysics(),
+    //   steps: [],
+    // );
+    return Column(
+      children: [
+        Card(
+            shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        )),
+      ],
     );
   }
 }

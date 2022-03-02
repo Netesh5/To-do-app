@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/additem.dart';
 
 class fab extends StatefulWidget {
   const fab({Key? key}) : super(key: key);
@@ -21,6 +22,9 @@ class _fabState extends State<fab> {
         ),
         elevation: 1,
         backgroundColor: primary_dark_color,
-        onPressed: () {});
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => additem()));
+        });
   }
 }

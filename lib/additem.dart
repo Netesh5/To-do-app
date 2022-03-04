@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:todo/database.dart';
+import 'package:todo/model/task.dart';
 
 class additem extends StatefulWidget {
   const additem({Key? key}) : super(key: key);
@@ -47,10 +50,11 @@ class additems extends StatefulWidget {
 }
 
 class _additemsState extends State<additems> {
+  TextEditingController dateinput = TextEditingController();
   TextEditingController datainput = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
   void initState() {
-    datainput.text = ""; //set the initial value of text field
+    dateinput.text = ""; //set the initial value of text field
     super.initState();
   }
 
@@ -64,13 +68,26 @@ class _additemsState extends State<additems> {
           style: TextStyle(
               fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
           child: TextField(
+            onSubmitted: (value) async {
+              if (value != "") {
+                Databases _databaseobj = Databases();
+                Task _newtask = Task(
+                  id: int.parse(value),
+                  task: value,
+                  time: int.parse(value),
+                );
+                await _databaseobj.insert_task(_newtask);
+                print("Task : ${value}");
+              }
+            },
+            textInputAction: TextInputAction.next,
             cursorHeight: 25,
             cursorColor: Colors.black,
-            style: TextStyle(fontSize: 20, color: Colors.black),
-            decoration: InputDecoration(
+            style: const TextStyle(fontSize: 20, color: Colors.black),
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               focusedBorder: OutlineInputBorder(),
             ),
@@ -87,7 +104,7 @@ class _additemsState extends State<additems> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
           child: TextField(
-            controller: datainput,
+            controller: dateinput,
             readOnly: true,
             cursorHeight: 25,
             cursorColor: Colors.black,
@@ -108,7 +125,7 @@ class _additemsState extends State<additems> {
               if (timeOfDay != null && timeOfDay != selectedTime) {
                 setState(() {
                   selectedTime = timeOfDay;
-                  datainput.text = "${selectedTime.hour.toString()}"
+                  dateinput.text = "${selectedTime.hour.toString()}"
                       " : "
                       "${selectedTime.minute.toString()}";
                 });

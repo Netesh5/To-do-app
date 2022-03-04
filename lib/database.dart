@@ -5,10 +5,10 @@ import 'package:todo/model/task.dart';
 class Databases {
   Future<Database> database() async {
     return openDatabase(
-      join(await getDatabasesPath(), 'task.db'),
+      join(await getDatabasesPath(), 'todo.db'),
       onCreate: (db, version) {
         return db.execute(
-          'CREATE TABLE task(id INTEGER PRIMARY KEY, task TEXT, time INTEGER)',
+          'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT, time INTEGER)',
         );
       },
       version: 1,
@@ -17,7 +17,19 @@ class Databases {
 
   Future<void> insert_task(Task task) async {
     Database _db = await database();
-    _db.insert("task", task.data(),
+    await _db.insert("tasks", task.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<Task>> tasklist() async {
+    Database _db = await database();
+    List<Map<String, dynamic>> taskmap = await _db.query('tasks');
+    return List.generate(taskmap.length, (index) {
+      return Task(
+        //id: taskmap[index]['id'],
+        task: taskmap[index]['task'],
+        //time: taskmap[index]['time']
+      );
+    });
   }
 }

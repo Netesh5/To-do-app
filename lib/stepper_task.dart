@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todo/database.dart';
 import 'package:todo/fab.dart';
+import 'package:todo/model/task.dart';
+import 'package:todo/widget_item.dart';
 
 class stepper extends StatefulWidget {
   const stepper({Key? key}) : super(key: key);
@@ -9,6 +12,7 @@ class stepper extends StatefulWidget {
 }
 
 class _stepperState extends State<stepper> {
+  final Databases _db = Databases();
   @override
   Widget build(BuildContext context) {
     // return Stepper(
@@ -16,213 +20,19 @@ class _stepperState extends State<stepper> {
     //   physics: ScrollPhysics(),
     //   steps: [],
     // );
-    return Expanded(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 100,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: Colors.amberAccent,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Task Name",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Time",
-                                style: TextStyle(
-                                    color: Colors.black45,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: primary_dark_color),
-                              onPressed: () {},
-                              child: const Text("Mark as done"),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 100,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: Colors.amberAccent,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Task Name",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Time",
-                                style: TextStyle(
-                                    color: Colors.black45,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: primary_dark_color),
-                              onPressed: () {},
-                              child: const Text("Mark as done"),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 100,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: Colors.amberAccent,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Task Name",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Time",
-                                style: TextStyle(
-                                    color: Colors.black45,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: primary_dark_color),
-                              onPressed: () {},
-                              child: const Text("Mark as done"),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 100,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: Colors.amberAccent,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Task Name",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Time",
-                                style: TextStyle(
-                                    color: Colors.black45,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: primary_dark_color),
-                              onPressed: () {},
-                              child: const Text("Mark as done"),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 100,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: Colors.amberAccent,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Task Name",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("Time",
-                                style: TextStyle(
-                                    color: Colors.black45,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: primary_dark_color),
-                              onPressed: () {},
-                              child: const Text("Mark as done"),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: FutureBuilder(
+          future: _db.tasklist(),
+          builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
+            return ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.hasData ? snapshot.data!.length : 0,
+                itemBuilder: (context, index) {
+                  return task_widget();
+                });
+          },
         ),
       ),
     );

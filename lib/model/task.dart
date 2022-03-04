@@ -2,16 +2,16 @@ import 'package:flutter/widgets.dart';
 
 class Task {
   final String task;
-  final int time;
-  final int id;
-  Task({required this.id, required this.task, required this.time});
+  //final int time;
+  //final int id;
+  Task({required this.task});
 
-  Map<String, dynamic> data() {
+  Map<String, dynamic> toMap() {
     //for converting data to Map
     return {
-      'id': id,
+      //'id': id,
       'task': task,
-      'time': time,
+      //'time': time,
     };
   }
 }

@@ -13,9 +13,10 @@ class additem extends StatefulWidget {
 Color primary_light_color = const Color(0xffFCFDF3);
 Color primary_dark_color = const Color(0xff1f1f1f);
 Color faded_black = Colors.grey.shade700;
+late final String task_name;
+late final int time;
 
 class _additemState extends State<additem> {
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,18 @@ class _additemState extends State<additem> {
         backgroundColor: primary_dark_color,
         actions: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              if (task_name != "") {
+                Databases _databaseobj = Databases();
+                Task _newtask = Task(
+                  //id: int.parse(task_name),
+                  task: task_name,
+                  //time: int.parse(task_name),
+                );
+
+                await _databaseobj.insert_task(_newtask);
+              }
+            },
             child: const Text(
               "Add Task",
               style: TextStyle(
@@ -71,19 +83,9 @@ class _additemsState extends State<additems> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
           child: TextField(
-            onSubmitted: (value) async {
-              if (value != "") {
-                Databases _databaseobj = Databases();
-                Task _newtask = Task(
-                  id: int.parse(value),
-                  task: value,
-                  time: int.parse(value),
-                );
-                await _databaseobj.insert_task(_newtask);
-                print("Task : ${value}");
-              }
+            onSubmitted: (value) {
+              task_name = value;
             },
-            textInputAction: TextInputAction.next,
             cursorHeight: 25,
             cursorColor: Colors.black,
             style: const TextStyle(fontSize: 20, color: Colors.black),

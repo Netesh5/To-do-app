@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo/model/task.dart';
@@ -12,13 +15,20 @@ class Databases {
         );
       },
       version: 1,
-    );
+    ).catchError((Object e, StackTrace stackTrace) {
+      debugPrint(e.toString());
+    }).whenComplete(() => debugPrint('complete'));
   }
 
+  // ignore: non_constant_identifier_names
   Future<void> insert_task(Task task) async {
     Database _db = await database();
-    await _db.insert("tasks", task.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
+    await _db
+        .insert("tasks", task.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.replace)
+        .catchError((e) {
+      debugPrint(e.toString());
+    });
   }
 
   Future<List<Task>> tasklist() async {

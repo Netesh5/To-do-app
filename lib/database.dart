@@ -1,45 +1,56 @@
-import 'dart:math';
-
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo/model/task.dart';
 
-class Databases {
-  Future<Database> database() async {
-    return openDatabase(
-      join(await getDatabasesPath(), 'todo.db'),
+const tableName = "Todo";
+const columnId = 'Id';
+const columnTitle = 'Title';
+const columnTask = 'Task';
+const columnTime = 'Time';
+
+class DataBase {
+  // initalize database
+  Database? _database;
+
+  //getter method to check database is created or not
+  Future<Database?> get database async {
+    //null assignment operator ---> if(_database==null){
+    //  _database=await intializedbatase();}
+    _database ??= await initalizedatabase();
+    return _database;
+  }
+
+  Future<Database?> initalizedatabase() async {
+    var dir = await getDatabasesPath();
+    var path = dir + 'todo.db';
+    var database = await openDatabase(
+      path,
+      version: 1,
       onCreate: (db, version) {
+        // Run the CREATE TABLE statement on the database.
         return db.execute(
-          'CREATE TABLE tasks(id INTEGER PRIMARY KEY, task TEXT, time INTEGER)',
+          'CREATE TABLE dogs(id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT, Task Text,Time INTEGER)',
         );
       },
-      version: 1,
-    ).catchError((Object e, StackTrace stackTrace) {
-      debugPrint(e.toString());
-    }).whenComplete(() => debugPrint('complete'));
+    );
   }
 
-  // ignore: non_constant_identifier_names
-  Future<void> insert_task(Task task) async {
-    Database _db = await database();
-    await _db
-        .insert("tasks", task.toMap(),
-            conflictAlgorithm: ConflictAlgorithm.replace)
-        .catchError((e) {
-      debugPrint(e.toString());
-    });
+  void insert(Task task) async {
+    final db = await this.database;
+    final result = await db?.insert(tableName, task.toMap());
+    debugPrint("Result : $result");
   }
 
-  Future<List<Task>> tasklist() async {
-    Database _db = await database();
-    List<Map<String, dynamic>> taskmap = await _db.query('tasks');
-    return List.generate(taskmap.length, (index) {
+  Future<List<Task>?> query() async {
+    final db = await this._database;
+    final result = await db?.query(tableName);
+    return List.generate(result!.length, (index) {
       return Task(
-        //id: taskmap[index]['id'],
-        task: taskmap[index]['task'],
-        //time: taskmap[index]['time']
-      );
+          title: result[index]['title'].toString(),
+          task: result[index]['task'].toString(),
+          time: result[index]['time'].toString());
     });
   }
 }

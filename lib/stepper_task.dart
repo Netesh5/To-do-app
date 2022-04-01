@@ -12,7 +12,7 @@ class stepper extends StatefulWidget {
 }
 
 class _stepperState extends State<stepper> {
-  final Databases _db = Databases();
+  final DataBase _db = DataBase();
   @override
   Widget build(BuildContext context) {
     // return Stepper(
@@ -24,8 +24,8 @@ class _stepperState extends State<stepper> {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: FutureBuilder(
-          future: _db.tasklist(),
-          builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
+          future: _db.query(),
+          builder: (BuildContext context, AsyncSnapshot<List<Task>?> snapshot) {
             return ListView.builder(
                 shrinkWrap: true,
                 itemCount: snapshot.hasData ? snapshot.data!.length : 0,

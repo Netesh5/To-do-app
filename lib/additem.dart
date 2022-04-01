@@ -74,13 +74,9 @@ class _additemsState extends State<additems> {
           child: TextField(
             onSubmitted: (value) async {
               if (value != "") {
-                Databases _databaseobj = Databases();
-                Task _newtask = Task(
-                  //id: int.parse(task_name),
-                  task: value,
-                  //time: int.parse(task_name),
-                );
-                await _databaseobj.insert_task(_newtask);
+                DataBase _databaseobj = DataBase();
+                Task _newtask = Task(title: value, task: value, time: value);
+                _databaseobj.insert(_newtask);
               }
             },
             cursorHeight: 25,

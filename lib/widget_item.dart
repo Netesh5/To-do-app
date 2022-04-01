@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:todo/additem.dart';
+import 'package:todo/database.dart';
+import 'package:todo/model/task.dart';
 
 class task_widget extends StatelessWidget {
   Color primary_light_color = const Color(0xffFCFDF3);
   Color primary_dark_color = const Color(0xff1f1f1f);
   Color faded_black = Colors.grey.shade700;
+  DataBase _db = DataBase();
+  final Task _task = Task();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -36,7 +40,9 @@ class task_widget extends StatelessWidget {
                   ElevatedButton(
                     style:
                         ElevatedButton.styleFrom(primary: primary_dark_color),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await _db.deleteTask(_task.id ?? 0);
+                    },
                     child: const Text("Mark as done"),
                   )
                 ],

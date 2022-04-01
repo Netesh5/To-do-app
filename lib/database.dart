@@ -37,12 +37,14 @@ class DataBase {
     );
   }
 
+//insert the data
   void insert(Task task) async {
     final db = await this.database;
     final result = await db?.insert(tableName, task.toMap());
     debugPrint("Result : $result");
   }
 
+//retrive the data
   Future<List<Task>?> query() async {
     final db = await this._database;
     final result = await db?.query(tableName);
@@ -52,5 +54,15 @@ class DataBase {
           task: result[index]['task'].toString(),
           time: result[index]['time'].toString());
     });
+  }
+
+//delete the data
+  Future<int?> deleteTask(int id) async {
+    final db = await this.database;
+    await db!.delete(
+      tableName,
+      where: "id = ?",
+      whereArgs: [id],
+    );
   }
 }

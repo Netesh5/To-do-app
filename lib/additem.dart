@@ -22,22 +22,6 @@ class _additemState extends State<additem> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primary_dark_color,
-        actions: [
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text(
-              "Add Task",
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-            style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50))),
-          )
-        ],
       ),
       backgroundColor: primary_light_color,
       body: additems(),
@@ -69,20 +53,20 @@ class _additemsState extends State<additems> {
           style: TextStyle(
               fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        Padding(
+        const Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
           child: TextField(
-            onSubmitted: (value) async {
-              if (value != "") {
-                DataBase _databaseobj = DataBase();
-                Task _newtask = Task(title: value, task: value, time: value);
-                _databaseobj.insert(_newtask);
-              }
-            },
+            // onSubmitted: (value) async {
+            //   if (value != "") {
+            //     DataBase _databaseobj = DataBase();
+            //     Task _newtask = Task(title: value, task: value, time: value);
+            //     _databaseobj.insert(_newtask);
+            //   }
+            // },
             cursorHeight: 25,
             cursorColor: Colors.black,
-            style: const TextStyle(fontSize: 20, color: Colors.black),
-            decoration: const InputDecoration(
+            style: TextStyle(fontSize: 20, color: Colors.black),
+            decoration: InputDecoration(
               border: OutlineInputBorder(),
               focusedBorder: OutlineInputBorder(),
             ),
@@ -127,7 +111,29 @@ class _additemsState extends State<additems> {
               }
             },
           ),
-        )
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            DataBase _databaseobj = DataBase();
+            Task _newtask = Task(
+                title: datainput.text,
+                task: datainput.text,
+                time: dateinput.text);
+            _databaseobj.insert(_newtask);
+          },
+          child: const Text(
+            "Add Task",
+            style: TextStyle(
+                fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          style: ElevatedButton.styleFrom(
+              primary: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50))),
+        ),
       ],
     );
   }

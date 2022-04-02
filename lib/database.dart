@@ -31,7 +31,7 @@ class DataBase {
       onCreate: (db, version) {
         // Run the CREATE TABLE statement on the database.
         return db.execute(
-          'CREATE TABLE dogs(id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT, Task Text,Time INTEGER)',
+          'CREATE TABLE todo(id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT, Task Text,Time INTEGER)',
         );
       },
     );
@@ -48,9 +48,9 @@ class DataBase {
   Future<List<Task>?> query() async {
     final db = await this._database;
     final result = await db?.query(tableName);
-    return List.generate(result!.length, (index) {
+    return List.generate(result?.length ?? 0, (index) {
       return Task(
-          title: result[index]['title'].toString(),
+          title: result![index]['title'].toString(),
           task: result[index]['task'].toString(),
           time: result[index]['time'].toString());
     });

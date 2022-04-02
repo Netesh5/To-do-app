@@ -24,8 +24,10 @@ class _stepperState extends State<stepper> {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: FutureBuilder(
+          initialData: const [],
           future: _db.query(),
-          builder: (BuildContext context, AsyncSnapshot<List<Task>?> snapshot) {
+          builder:
+              (BuildContext context, AsyncSnapshot<List<dynamic>?> snapshot) {
             return ListView.builder(
                 shrinkWrap: true,
                 itemCount: snapshot.hasData ? snapshot.data!.length : 0,
